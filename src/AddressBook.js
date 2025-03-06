@@ -1,23 +1,21 @@
 class AddressBook {
-    constructor() {
-        this.contacts = [];
+    findByName(name) {
+        return this.contacts.find(contact => contact.firstName === name);
     }
 
-    addContact(contact) {
-        this.contacts.push(contact);
-    }
-
-    displayContacts() {
-        this.contacts.forEach(contact => console.log(contact.toString()));
+    editContact(name, newDetails) {
+        let contact = this.findByName(name);
+        if (contact) {
+            Object.assign(contact, newDetails);
+            return true;
+        }
+        return false;
     }
 }
 
 // Example Usage
-const addressBook = new AddressBook();
-try {
-    const contact1 = new AddressBookContact("Sahil", "Ganeshwani", "123 Street", "Bhopal", "Madhya Pradesh", "402000", "9876543210", "sahil@example.com");
-    addressBook.addContact(contact1);
-    addressBook.displayContacts();
-} catch (error) {
-    console.error(error.message);
-}
+console.log("Before Editing:");
+addressBook.displayContacts();
+addressBook.editContact("Sahil", { city: "Mumbai" });
+console.log("After Editing:");
+addressBook.displayContacts();
