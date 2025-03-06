@@ -1,13 +1,12 @@
 class AddressBook {
-    searchByCity(city) {
-        return this.contacts.filter(contact => contact.city === city);
-    }
-
-    countByCity(city) {
-        return this.searchByCity(city).length;
+    sortContacts() {
+        this.contacts.sort((a, b) => a.firstName.localeCompare(b.firstName));
     }
 }
 
 // Example Usage
-console.log("Contacts in Bhopal:", addressBook.searchByCity("Bhopal"));
-console.log("Count of contacts in Bhopal:", addressBook.countByCity("Bhopal"));
+console.log("Before Sorting:");
+addressBook.displayContacts();
+addressBook.sortContacts();
+console.log("After Sorting:");
+addressBook.displayContacts();
